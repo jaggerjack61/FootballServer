@@ -42,8 +42,16 @@ class PlayerController extends Controller
             $profile->dob=$request->dob;
             $profile->sex=$request->sex;
             $profile->education=$request->education;
-            $profile->image='null';
+
             $profile->save();
+
+            $profile=PlayerProfile::latest()->first();
+
+            $file= $request->file('image');
+            $filename= $file->getClientOriginalName();
+            $file-> move(public_path('/img/profile/'.$profile->id), $filename);
+
+            $profile->update(['image'=> $filename]);
             return back()->with('success','stored player profile');
         }
         catch(\Exception $e){

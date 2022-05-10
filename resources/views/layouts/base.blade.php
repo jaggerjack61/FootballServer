@@ -11,6 +11,12 @@
 
 
     <style>
+        img {
+            float: left;
+            /*width:  100px;*/
+            height: 500px;
+            object-fit: cover;
+        }
         .success{
             background-color: #559455;
             padding:10px;

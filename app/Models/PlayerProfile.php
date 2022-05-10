@@ -12,7 +12,7 @@ class PlayerProfile extends Model
 
     public function club(){
 
-        $last=ClubHistory::where('profile_id',$this->id)->latest()->first()??'No club yet';
-        return $last->club->name;
+        $last=ClubHistory::where('profile_id',$this->id)->latest()->first()->club->name??'No club yet';
+        return $last;
     }
 }

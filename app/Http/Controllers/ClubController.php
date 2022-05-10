@@ -16,8 +16,19 @@ class ClubController extends Controller
             $club=new Club();
             $club->name=$request->name;
             $club->details=$request->description;
-            $club->image='null';
             $club->save();
+
+            $club=Club::latest()->first();
+
+            $file= $request->file('image');
+            $filename= $file->getClientOriginalName();
+            $file-> move(public_path('/img/club/'.$club->id), $filename);
+
+            $club->update(['image'=> $filename]);
+
+
+
+            //$club->image='null';
             return redirect()->route('show-clubs');
         }
         catch(\Exception $e){

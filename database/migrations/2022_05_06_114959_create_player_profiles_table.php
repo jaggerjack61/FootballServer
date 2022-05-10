@@ -18,7 +18,7 @@ class CreatePlayerProfilesTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('name');
             $table->string('sex');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('dob');
             $table->string('education');
             $table->timestamps();

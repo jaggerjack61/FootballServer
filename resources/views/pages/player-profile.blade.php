@@ -5,7 +5,7 @@
 
     <!-- Modal Structure -->
     <div id="modal3" class="modal">
-        <form action="{{route('store-profile')}}" method="post">
+        <form action="{{route('store-profile')}}" method="post"  enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
                 <div class="row">
@@ -32,6 +32,9 @@
                             <option value="phd">Phd</option>
                         </select>
                     </div>
+                    <div class="col s12 m12">
+                        <input type="file" accept="image/*" class="form-control" required name="image">
+                    </div>
 
                 </div>
 
@@ -48,10 +51,11 @@
         <div class="col s12 m12">
             <div class="card">
                 <div class="card-image">
-                    <img src="/images/sample-1.jpg">
-                    <span class="card-title info">{{$profile->name}} Club: {{$profile->club()}}</span>
+                    <img src="/img/profile/{{$profile->id}}/{{$profile->image}}">
+
                 </div>
                 <div class="card-content">
+                    <span class="card-title info">{{$profile->name}} Club: {{$profile->club()}}</span>
                     <p>{{$profile->dob}}</p>
                     <p>{{$profile->sex}}</p>
                     <p>{{$profile->education}}</p>
@@ -61,7 +65,7 @@
 
                     <a class="waves-effect waves-light btn btn-block" href="{{route('view-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>View More</a>
                     @if($isPlayer)
-                    <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>Claim Profile</a>
+                    <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">link</i>Claim Profile</a>
                     @else
 
                     @endif

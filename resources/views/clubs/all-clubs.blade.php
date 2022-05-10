@@ -7,17 +7,19 @@
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
-        <form action="{{route('store-club')}}" method="post">
+        <form action="{{route('store-club')}}" method="post" enctype="multipart/form-data">
             @csrf
         <div class="modal-content">
             <div class="row">
                 <div class="col s12 m12">
-                    <input name="name" placeholder="Club Name" type="text" class="validate">
+                    <input name="name" placeholder="Club Name"  type="text" class="validate">
                 </div>
                 <div class="col s12 m12">
                     <input name="description" placeholder="Club Description" type="text" class="validate">
                 </div>
-
+                <div class="col s12 m12">
+                    <input type="file" accept="image/*" class="form-control" required name="image">
+                </div>
             </div>
 
         </div>
@@ -34,7 +36,7 @@
         <div class="col s12 m12">
             <div class="card">
                 <div class="card-image">
-                    <img src="/images/sample-1.jpg">
+                    <img src="/img/club/{{$club->id}}/{{$club->image}}" >
                     <span class="card-title">{{$club->name}}</span>
                 </div>
                 <div class="card-content">

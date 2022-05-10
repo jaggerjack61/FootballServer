@@ -8,10 +8,11 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-image">
-                        <img src="/images/sample-1.jpg">
-                        <span class="card-title info">{{$profile->name}} Club: {{$profile->club()}}</span>
+                        <img src="/img/profile/{{$profile->id}}/{{$profile->image}}">
+
                     </div>
                     <div class="card-content">
+                        <span class="card-title info">{{$profile->name}} Club: {{$profile->club()}}</span>
                         <p>{{$profile->dob}}</p>
                         <p>{{$profile->sex}}</p>
                         <p>{{$profile->education}}</p>
