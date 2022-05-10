@@ -1,6 +1,6 @@
 <div class="row">
     @if ($message = Session::get('success'))
-        <div class="success col s12 m12">
+        <div class="success col s12 m12 text-lighten-2">
 
             <strong>{{ $message }}</strong>
         </div>
@@ -10,7 +10,7 @@
 
 
     @if ($message = Session::get('error'))
-        <div class="error col s12 m12">
+        <div class="error col s12 m12 text-lighten-2">
 
             <strong>{{ $message }}</strong>
         </div>

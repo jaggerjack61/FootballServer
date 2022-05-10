@@ -49,7 +49,7 @@
             <div class="card">
                 <div class="card-image">
                     <img src="/images/sample-1.jpg">
-                    <span class="card-title">{{$profile->name}}</span>
+                    <span class="card-title info">{{$profile->name}} Club: {{$profile->club()}}</span>
                 </div>
                 <div class="card-content">
                     <p>{{$profile->dob}}</p>
@@ -59,8 +59,8 @@
                 <div class="card-action">
 
 
-                    <a class="waves-effect waves-light btn" href="{{route('view-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>View More</a>
-                    <a class="waves-effect waves-light btn" href=""><i class="material-icons left">edit</i>Edit</a>
+                    <a class="waves-effect waves-light btn btn-block" href="{{route('view-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>View More</a>
+
 
 
 

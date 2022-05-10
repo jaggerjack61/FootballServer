@@ -36,7 +36,7 @@ Route::post('/player/update',[PlayerController::class,'updateProfile'])->name('u
 Route::get('/player/view/{id}',[PlayerController::class,'viewProfile'])->name('view-profile');
 Route::post('/player/stats',[PlayerController::class,'storeStats'])->name('store-stats');
 Route::post('/player/stats-update',[PlayerController::class,'updateStats'])->name('update-stats');
-Route::post('/player/achievements',[PlayerController::class,'storeAchievements'])->name('store-achievements');
+Route::post('/player/achievements',[PlayerController::class,'storeAchievement'])->name('store-achievement');
 
 
 
@@ -57,4 +57,5 @@ Route::get('/chat',[ChatController::class,'showChats'])->name('show-chats')->mid
 //Club Routes
 Route::get('/club',[ClubController::class,'showClubs'])->name('show-clubs');
 Route::post('/club',[ClubController::class,'storeClub'])->name('store-club');
+Route::get('/club/{id}',[ClubController::class,'viewClub'])->name('view-club');
 

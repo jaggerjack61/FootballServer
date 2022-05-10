@@ -1,6 +1,44 @@
 @extends('layouts.base')
 
 @section('content')
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal33">Edit Player Profile</a>
+
+    <!-- Modal Structure -->
+    <div id="modal33" class="modal">
+        <form action="{{route('update-profile')}}" method="post">
+            @csrf
+            <div class="modal-content">
+                <div class="row">
+                    <input type="hidden" name="id" value="{{$id}}" />
+                    <div class="col s12 m12">
+                        <input name="name" placeholder="Name" type="text" value="{{$profile->name}}"  class="validate">
+                    </div>
+                    <div class="col s12 m12">
+                        <input name="dob" placeholder="Date of birth" value="{{$profile->dob}}" type="date" class="validate">
+                    </div>
+
+                    <div class="col s12 m12">
+                        <select name="education">
+                            <option value="primary">Primary</option>
+                            <option value="olevel">O level</option>
+                            <option value="alevel">A level</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="degree">Degree</option>
+                            <option value="masters">Masters</option>
+                            <option value="phd">Phd</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </form>
+    </div>
+
 
     @if(!($stats))
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Save Player Stats</a>
@@ -84,11 +122,36 @@
         </div>
 
     @endif
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Player Achievement</a>
 
+    <div id="modal3" class="modal">
+        <form action="{{route('store-achievement')}}" method="post">
+            @csrf
+            <div class="modal-content">
+                <div class="row">
+                    <input type="hidden" name="profile_id" value="{{$id}}" />
+                    <div class="col s12 m12">
+                        <input name="achievement" placeholder="achievement" type="text" class="validate">
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </form>
+    </div>
     <!-- Modal Structure -->
 
 
-
+    <h4>
+        <div class="info">
+        {{$profile->name}}
+        </div></h4>
     <h4>Stats</h4>
     <table>
         <tbody>
@@ -119,7 +182,11 @@
     </table>
 
     <h4>Achievements</h4>
-    <p>Achievements in detail</p>
+    @foreach($achievements as $achievement)
+        <ul>
+    <li>{{$achievement->achievement}}</li>
+        </ul>
+    @endforeach
 
 
 
@@ -129,6 +196,9 @@
     <script>
         $(document).ready(function(){
             $('.modal').modal();
+        });
+        $(document).ready(function(){
+            $('select').formSelect();
         });
 
 

@@ -1,6 +1,8 @@
 @extends('layouts.base')
 @section('content')
 
+
+
     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">New Club</a>
 
     <!-- Modal Structure -->
@@ -41,8 +43,8 @@
                 <div class="card-action">
 
 
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">visibility</i>Assign Player</a>
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit</a>
+                    <a class="waves-effect waves-light btn" href="{{route('view-club',$club->id)}}"><i class="material-icons left">visibility</i>View Club</a>
+
 
 
 

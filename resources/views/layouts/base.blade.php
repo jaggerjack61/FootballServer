@@ -23,6 +23,12 @@
             margin:15px;
             display: inline-block;
         }
+        .info{
+            background-color: #7d7dce;
+            padding:10px;
+            margin:15px;
+            display: inline-block;
+        }
     </style>
     @yield('cssHere')
 
@@ -41,17 +47,18 @@
     </div>
 </nav>
 <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html"><i class="material-icons">person</i>Player Profiles</a></li>
-    <li><a href="badges.html"><i class="material-icons">groups</i>Clubs</a></li>
+    <li><a href="{{route('show-profiles')}}"><i class="material-icons">person</i>Player Profiles</a></li>
+    <li><a href="{{route('show-clubs')}}"><i class="material-icons">groups</i>Clubs</a></li>
     <li><a href="/chat"><i class="material-icons">forum</i>Chat</a></li>
     <li><a href="mobile.html"><i class="material-icons">logout</i>Logout</a></li>
 </ul>
 
+<div class="container">
 @include('layouts.flash-message')
 
 
 @yield('content')
-
+</div>
 
 
 

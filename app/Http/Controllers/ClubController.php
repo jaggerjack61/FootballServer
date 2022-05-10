@@ -24,4 +24,9 @@ class ClubController extends Controller
             dd($e);
         }
     }
+
+    public function viewClub($id){
+        $club=Club::find($id);
+        return view('clubs.view-club',compact('club'));
+    }
 }

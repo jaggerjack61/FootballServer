@@ -9,4 +9,7 @@ class ClubHistory extends Model
 {
     use HasFactory;
     public $guarded=[];
+    public function club(){
+        return $this->belongsTo(Club::class,'club_id');
+    }
 }
