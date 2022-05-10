@@ -20,26 +20,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    return view('welcome');
+});
 
 //Auth Routes
-Route::get('/login',[AuthController::class,'showLogin']);
-Route::get('/register',[AuthController::class,'showRegister']);
-Route::post('/login',[AuthController::class,'login'])->name('login');
-Route::post('/register',[AuthController::class,'register'])->name('register');
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/login',[AuthController::class,'showLogin'])->middleware('guest');
+Route::get('/register',[AuthController::class,'showRegister'])->middleware('guest');
+Route::post('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
+Route::post('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
 
 
 //Player Routes
-Route::get('/player',[PlayerController::class,'showProfiles'])->name('show-profiles');
-Route::post('/player',[PlayerController::class,'storeProfile'])->name('store-profile');
-Route::post('/player/update',[PlayerController::class,'updateProfile'])->name('update-profile');
-Route::get('/player/view/{id}',[PlayerController::class,'viewProfile'])->name('view-profile');
-Route::post('/player/stats',[PlayerController::class,'storeStats'])->name('store-stats');
-Route::post('/player/stats-update',[PlayerController::class,'updateStats'])->name('update-stats');
-Route::post('/player/achievements',[PlayerController::class,'storeAchievement'])->name('store-achievement');
-Route::get('/player/claim/{profile_id}',[PlayerController::class,'claimProfile'])->name('claim-profile');
-Route::get('/player/release/{profile_id}',[PlayerController::class,'releaseProfile'])->name('release-profile');
+Route::get('/player',[PlayerController::class,'showProfiles'])->name('show-profiles')->middleware('auth');
+Route::post('/player',[PlayerController::class,'storeProfile'])->name('store-profile')->middleware('auth');
+Route::post('/player/update',[PlayerController::class,'updateProfile'])->name('update-profile')->middleware('auth');
+Route::get('/player/view/{id}',[PlayerController::class,'viewProfile'])->name('view-profile')->middleware('auth');
+Route::post('/player/stats',[PlayerController::class,'storeStats'])->name('store-stats')->middleware('auth');
+Route::post('/player/stats-update',[PlayerController::class,'updateStats'])->name('update-stats')->middleware('auth');
+Route::post('/player/achievements',[PlayerController::class,'storeAchievement'])->name('store-achievement')->middleware('auth');
+Route::get('/player/claim/{profile_id}',[PlayerController::class,'claimProfile'])->name('claim-profile')->middleware('auth');
+Route::get('/player/release/{profile_id}',[PlayerController::class,'releaseProfile'])->name('release-profile')->middleware('auth');
 
 
 
@@ -59,7 +62,7 @@ Route::get('/chat',[ChatController::class,'showChats'])->name('show-chats')->mid
 
 
 //Club Routes
-Route::get('/club',[ClubController::class,'showClubs'])->name('show-clubs');
-Route::post('/club',[ClubController::class,'storeClub'])->name('store-club');
-Route::get('/club/{id}',[ClubController::class,'viewClub'])->name('view-club');
+Route::get('/club',[ClubController::class,'showClubs'])->name('show-clubs')->middleware('auth');
+Route::post('/club',[ClubController::class,'storeClub'])->name('store-club')->middleware('auth');
+Route::get('/club/{id}',[ClubController::class,'viewClub'])->name('view-club')->middleware('auth');
 
