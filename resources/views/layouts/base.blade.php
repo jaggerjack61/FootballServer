@@ -42,16 +42,21 @@
 <nav>
     <div class="nav-wrapper">
         <a href="#!" class="brand-logo">Soccer App</a>
+        @auth
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            @endauth
 
     </div>
 </nav>
+@auth
 <ul class="sidenav" id="mobile-demo">
+    <li><a href=""><i class="material-icons">person</i>{{auth()->user()->name}}</a></li>
     <li><a href="{{route('show-profiles')}}"><i class="material-icons">person</i>Player Profiles</a></li>
     <li><a href="{{route('show-clubs')}}"><i class="material-icons">groups</i>Clubs</a></li>
     <li><a href="/chat"><i class="material-icons">forum</i>Chat</a></li>
-    <li><a href="mobile.html"><i class="material-icons">logout</i>Logout</a></li>
+    <li><a href="{{route('logout')}}"><i class="material-icons">logout</i>Logout</a></li>
 </ul>
+@endauth
 
 <div class="container">
 @include('layouts.flash-message')

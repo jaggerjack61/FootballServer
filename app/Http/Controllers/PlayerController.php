@@ -2,16 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountType;
 use App\Models\PlayerAchievement;
 use App\Models\PlayerProfile;
 use App\Models\PlayerStat;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlayerController extends Controller
 {
     public function showProfiles(){
-        $profiles=PlayerProfile::paginate(15);
-        return view('pages.player-profile',compact('profiles'));
+        //dd(Auth::account_type());
+        $profile=PlayerProfile::where('user_id',Auth::id())->first();
+        $isPlayer=false;
+        //dd($profiles);
+        if($profile){
+            return view('pages.claimed-profile',compact('profile','isPlayer'));
+        }
+        $userType=AccountType::where('user_id',Auth::id())->first();
+        //dd($userType);
+
+
+        if($userType->type=='player'){
+            $profiles=PlayerProfile::where('user_id',null)->paginate(15);
+            $isPlayer=true;
+            //dd('here');
+            return view('pages.player-profile',compact('profiles','isPlayer'));
+        }
+        else {
+            $profiles = PlayerProfile::paginate(15);
+            return view('pages.player-profile', compact('profiles','isPlayer'));
+        }
     }
     public function storeProfile(Request $request){
         try{
@@ -100,5 +122,28 @@ class PlayerController extends Controller
             return back()->with('error',$e->getMessage());
         }
 
+    }
+    public function claimProfile($profile_id){
+        try{
+            $profile=PlayerProfile::find($profile_id);
+            $profile->update([
+                'user_id'=>Auth::id()
+            ]);
+            return back()->with('success','profile has been linked with account');
+        }catch(\Exception $e){
+            return back()->with('error',$e->getMessage());
+        }
+    }
+
+    public function releaseProfile($profile_id){
+        try{
+            $profile=PlayerProfile::find($profile_id);
+            $profile->update([
+                'user_id'=>null
+            ]);
+            return back()->with('success','profile has been released from this account');
+        }catch(\Exception $e){
+            return back()->with('error',$e->getMessage());
+        }
     }
 }

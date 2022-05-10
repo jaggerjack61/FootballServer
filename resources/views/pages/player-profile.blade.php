@@ -60,6 +60,12 @@
 
 
                     <a class="waves-effect waves-light btn btn-block" href="{{route('view-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>View More</a>
+                    @if($isPlayer)
+                    <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>Claim Profile</a>
+                    @else
+
+                    @endif
+
 
 
 

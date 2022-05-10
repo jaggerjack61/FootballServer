@@ -44,4 +44,9 @@ class AuthController extends Controller
         ]);
         return redirect()->route('show-chats');
     }
+    public function logout(){
+        auth()->logout();
+        return redirect()->route('login');
+
+    }
 }

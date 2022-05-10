@@ -26,6 +26,7 @@ Route::get('/login',[AuthController::class,'showLogin']);
 Route::get('/register',[AuthController::class,'showRegister']);
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 
@@ -37,6 +38,9 @@ Route::get('/player/view/{id}',[PlayerController::class,'viewProfile'])->name('v
 Route::post('/player/stats',[PlayerController::class,'storeStats'])->name('store-stats');
 Route::post('/player/stats-update',[PlayerController::class,'updateStats'])->name('update-stats');
 Route::post('/player/achievements',[PlayerController::class,'storeAchievement'])->name('store-achievement');
+Route::get('/player/claim/{profile_id}',[PlayerController::class,'claimProfile'])->name('claim-profile');
+Route::get('/player/release/{profile_id}',[PlayerController::class,'releaseProfile'])->name('release-profile');
+
 
 
 
