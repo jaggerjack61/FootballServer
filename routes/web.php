@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    dd('Unknown api call attempt');
 });
 Route::get('/home', function () {
-    return view('welcome');
+    dd('Unknown api call attempt');
 });
 
 //Auth Routes
