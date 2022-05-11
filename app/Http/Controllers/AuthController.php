@@ -34,7 +34,7 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=>$request->password
         ]);
-        return redirect()->route('show-chats');
+        return redirect()->route('show-profiles');
     }
 
     public function login(Request $request){
@@ -42,7 +42,7 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=>$request->password
         ]);
-        return redirect()->route('show-chats');
+        return redirect()->route('show-profiles');
     }
     public function logout(){
         auth()->logout();
