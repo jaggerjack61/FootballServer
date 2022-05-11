@@ -26,7 +26,7 @@
 
 
         @endforeach
-
+<div id="here"></div>
     </div>
     <div class="row">
 
@@ -39,11 +39,5 @@
         </div>
     </div>
 
-    <script>
-        while(1==1){
-            delay(5000);
 
-            Livewire.emit('refreshComponent')
-        }
-    </script>
 </div>

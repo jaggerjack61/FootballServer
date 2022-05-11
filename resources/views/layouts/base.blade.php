@@ -59,7 +59,7 @@
     <li><a href=""><i class="material-icons">person</i>{{auth()->user()->name}}</a></li>
     <li><a href="{{route('show-profiles')}}"><i class="material-icons">person</i>Player Profiles</a></li>
     <li><a href="{{route('show-clubs')}}"><i class="material-icons">groups</i>Clubs</a></li>
-    <li><a href="/chat"><i class="material-icons">forum</i>Chat</a></li>
+    <li><a href="/chat"><i class="material-icons">forum</i>Community Chat</a></li>
     <li><a href="{{route('logout')}}"><i class="material-icons">logout</i>Logout</a></li>
 </ul>
 @endauth

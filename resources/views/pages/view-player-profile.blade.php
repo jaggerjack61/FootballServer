@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
+    @if(App\Models\AccountType::where('user_id',auth()->user()->id)->value('type')=='admin')
     <a class="waves-effect waves-light btn modal-trigger" href="#modal33">Edit Player Profile</a>
 
     <!-- Modal Structure -->
@@ -145,6 +146,10 @@
             </div>
         </form>
     </div>
+
+    @else
+
+    @endif
     <!-- Modal Structure -->
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
 
-
+    @if(App\Models\AccountType::where('user_id',auth()->user()->id)->value('type')=='admin')
 
     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">New Club</a>
 
@@ -29,6 +29,9 @@
         </div>
         </form>
     </div>
+    @else
+
+    @endif
 
 
     <div class="row">
@@ -37,11 +40,13 @@
             <div class="card">
                 <div class="card-image">
                     <img src="/img/club/{{$club->id}}/{{$club->image}}" >
-                    <span class="card-title">{{$club->name}}</span>
+
                 </div>
                 <div class="card-content">
+                    <span class="card-title">{{$club->name}}</span>
                     <p>{{$club->details}}</p>
                 </div>
+                @if(App\Models\AccountType::where('user_id',auth()->user()->id)->value('type')=='admin')
                 <div class="card-action">
 
 
@@ -51,7 +56,7 @@
 
 
                 </div>
-
+                @endif
             </div>
         </div>
         @endforeach

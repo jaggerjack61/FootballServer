@@ -15,4 +15,10 @@ class PlayerProfile extends Model
         $last=ClubHistory::where('profile_id',$this->id)->latest()->first()->club->name??'No club yet';
         return $last;
     }
+    public function likes(){
+        return $this->hasMany(PlayerLike::class,'profile_id');
+    }
+    public function dislikes(){
+        return $this->hasMany(PlayerDislike::class,'profile_id');
+    }
 }

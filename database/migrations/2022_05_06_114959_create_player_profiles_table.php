@@ -21,6 +21,9 @@ class CreatePlayerProfilesTable extends Migration
             $table->string('image')->nullable();
             $table->string('dob');
             $table->string('education');
+            $table->string('position');
+            $table->string('province');
+            $table->string('height');
             $table->timestamps();
         });
     }

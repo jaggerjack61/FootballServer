@@ -42,6 +42,9 @@ class PlayerController extends Controller
             $profile->dob=$request->dob;
             $profile->sex=$request->sex;
             $profile->education=$request->education;
+            $profile->height=$request->height;
+            $profile->position=$request->position;
+            $profile->province=$request->province;
 
             $profile->save();
 
