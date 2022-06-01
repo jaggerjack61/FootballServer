@@ -37,7 +37,7 @@
         }
     </style>
     @yield('cssHere')
-
+    @laravelPWA
 
 </head>
 <body>

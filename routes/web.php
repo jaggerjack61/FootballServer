@@ -66,3 +66,9 @@ Route::get('/club',[ClubController::class,'showClubs'])->name('show-clubs')->mid
 Route::post('/club',[ClubController::class,'storeClub'])->name('store-club')->middleware('auth');
 Route::get('/club/{id}',[ClubController::class,'viewClub'])->name('view-club')->middleware('auth');
 
+
+
+Route::get('/offline', function () {
+    return view('modules/laravelpwa/offline');
+});
+
