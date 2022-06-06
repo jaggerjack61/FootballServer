@@ -100,10 +100,14 @@
                             <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">link</i>Claim Profile</a>
                             </div>
                         @else
+                            @if(App\Models\AccountType::where('user_id',auth()->user()->id)->value('type')=='admin')
                             <div class="col s4 m4">
-
+                                <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">send</i>Direct Message</a>
                             </div>
+                            @endif
+                                <div class="col s4 m4">
 
+                                </div>
                         @endif
                         <div class="col s4 m4">
                             <a href="#" class="btn btn-small" wire:click="like({{$profile->id}})">

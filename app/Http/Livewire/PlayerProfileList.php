@@ -44,42 +44,33 @@ class PlayerProfileList extends Component
         }
         else{
             if(PlayerDislike::where('user_id',Auth::id())->where('profile_id',$profile->id)->first()){
-                PlayerDislike::where('user_id',Auth::id())->where('profile_id',$profile->id)->first()->delete();
-                $like=new PlayerLike();
-                $like->profile_id=$profile->id;
-                $like->user_id=Auth::id();
-                $like->save();
-                return back()->with('success','liked profile');
+                PlayerDislike::where('user_id',Auth::id())->where('profile_id',$profile->id)->delete();
             }
-            else{
-                $like=new PlayerLike();
-                $like->profile_id=$profile->id;
-                $like->user_id=Auth::id();
-                $like->save();
-                return back()->with('success','liked profile');
-            }
+
+            $like=new PlayerLike();
+            $like->profile_id=$profile->id;
+            $like->user_id=Auth::id();
+            $like->save();
+            return back()->with('success','liked profile');
+
         }
 
     }
     public function dislike(PlayerProfile $profile){
-        if(PlayerDislike::where('user_id',Auth::id())->where('profile_id',$profile)->first()){
+        if(PlayerDislike::where('user_id',Auth::id())->where('profile_id',$profile->id)->first()){
             return back()->with('error','Already disliked this player');
         }
         else{
             if(PlayerLike::where('user_id',Auth::id())->where('profile_id',$profile->id)->first()){
-                PlayerLike::where('user_id',Auth::id())->where('profile_id',$profile->id)->first()->delete();
-                $dislike=new PlayerDislike();
-                $dislike->profile_id=$profile->id;
-                $dislike->user_id=Auth::id();
-                $dislike->save();
-                return back()->with('success','disliked player');
-            }else{
-                $dislike=new PlayerDislike();
-                $dislike->profile_id=$profile->id;
-                $dislike->user_id=Auth::id();
-                $dislike->save();
-                return back()->with('success','disliked player');
+                PlayerLike::where('user_id',Auth::id())->where('profile_id',$profile->id)->delete();
+
             }
+            $dislike=new PlayerDislike();
+            $dislike->profile_id=$profile->id;
+            $dislike->user_id=Auth::id();
+            $dislike->save();
+            return back()->with('success','disliked player');
+
 
 
         }

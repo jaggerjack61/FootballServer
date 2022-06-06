@@ -18,6 +18,7 @@ class CreateChatsTable extends Migration
             $table->string('user_id');
             $table->string('name');
             $table->string('message');
+            $table->string('video')->nullable();
             $table->timestamps();
 
         });

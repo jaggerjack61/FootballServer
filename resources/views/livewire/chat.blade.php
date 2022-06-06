@@ -8,6 +8,9 @@
                     <div style="width:90%;" class="talk-bubble tri-right left-top p-2">
 
                         <div class="talktext">
+                            @if($message->video)
+                                <iframe width="80%" src="https://www.youtube.com/embed/{{$message->video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            @endif
                             <p>{{$message->message}}</p>
                             <p style="color:green;">from {{$message->name}} {{$message->created_at->diffForHumans()}}</p>
                         </div>
@@ -15,6 +18,9 @@
                 @else
                     <div style="width:90%;"  class="talk-bubble tri-right right-top p-2">
                         <div class="talktext" style="float:right;">
+                            @if($message->video)
+                                <iframe width="80%" src="https://www.youtube.com/embed/{{$message->video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            @endif
                             <p>{{$message->message}}</p>
                             <p style="color:green;">{{$message->created_at->diffForHumans()}}</p>
                         </div>

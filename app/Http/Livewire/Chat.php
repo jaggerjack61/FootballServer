@@ -18,6 +18,23 @@ class Chat extends Component
         // dd('here');
         $chat=new \App\Models\Chat();
         //$chat->patient_id=$this->patient_id;
+        $text=$this->text;
+        if(strpos($text,'youtube.com')){
+            if(strpos($text,'?v=')){
+                $pos=strpos($text,'?v=');
+                $video=substr($this->text,$pos+3,11);
+                $chat->video=$video;
+
+            }
+
+        }
+
+        if(strpos($text,'youtu.be')){
+            $pos=strpos($text,'youtu.be');
+            $video=substr($this->text,$pos+9,11);
+            $chat->video=$video;
+        }
+
         $chat->user_id=Auth::id();
         $chat->name=auth()->user()->name;
         $chat->message=$this->text;

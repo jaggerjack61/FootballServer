@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,9 @@ Route::get('/chat',[ChatController::class,'showChats'])->name('show-chats')->mid
 Route::get('/club',[ClubController::class,'showClubs'])->name('show-clubs')->middleware('auth');
 Route::post('/club',[ClubController::class,'storeClub'])->name('store-club')->middleware('auth');
 Route::get('/club/{id}',[ClubController::class,'viewClub'])->name('view-club')->middleware('auth');
+
+//Player Reports
+Route::get('/reports',[ReportsController::class,'showReports'])->name('show-reports')->middleware('auth');
 
 
 
