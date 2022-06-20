@@ -93,16 +93,16 @@
                     <div class="card-action">
                     <div class="row">
                         <div class="col s4 m4">
-                        <a class="waves-effect waves-light btn btn-block" href="{{route('view-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>View More</a>
+                        <a class="waves-effect waves-light btn btn-block" href="{{route('view-profile',[$profile->id])}}"><i class="material-icons left">visibility</i>More</a>
                         </div>
                         @if($isPlayer)
                             <div class="col s4 m4">
-                            <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">link</i>Claim Profile</a>
+                            <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">link</i>Claim</a>
                             </div>
                         @else
                             @if(App\Models\AccountType::where('user_id',auth()->user()->id)->value('type')=='admin')
                             <div class="col s4 m4">
-                                <a class="waves-effect waves-light btn btn-block" href="{{route('claim-profile',[$profile->id])}}"><i class="material-icons left">send</i>Direct Message</a>
+                                <a class="waves-effect waves-light btn btn-block" href="{{route('dm-profile',[$profile->id])}}"><i class="material-icons left">send</i>DM</a>
                             </div>
                             @endif
                                 <div class="col s4 m4">
@@ -113,11 +113,11 @@
                             <a href="#" class="btn btn-small" wire:click="like({{$profile->id}})">
                                 <span class="material-icons left">
                                 thumb_up_off_alt
-                                </span>{{$profile->likes->count()}} LIKE</a>
+                                </span>{{$profile->likes->count()}}</a>
                             <a href="#" class="btn btn-small" wire:click="dislike({{$profile->id}})">
                                 <span class="material-icons left">
                                 thumb_down_alt
-                                </span>{{$profile->dislikes->count()}} HATE
+                                </span>{{$profile->dislikes->count()}}
                             </a>
                         </div>
 

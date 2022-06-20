@@ -19,9 +19,15 @@
                     </div>
                     <div class="card-action">
 
+                        <div class="row">
 
-                        <a class="waves-effect waves-light btn btn-block" href="{{route('release-profile',[$profile->id])}}"><i class="material-icons left">link_off</i>Release Profile</a>
-
+                            <div class="col s6 m6">
+                                <a class="waves-effect waves-light btn btn-block" href="{{route('release-profile',[$profile->id])}}"><i class="material-icons left">link_off</i>Unlink</a>
+                            </div>
+                            <div class="col s6 m6">
+                                <a class="waves-effect waves-light btn btn-block" href="{{route('dm-profile',[$profile->id])}}"><i class="material-icons left">send</i>Inbox</a>
+                            </div>
+                        </div>
 
 
 

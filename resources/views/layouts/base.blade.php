@@ -36,34 +36,73 @@
             display: inline-block;
         }
     </style>
+
+    <style>
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
     @yield('cssHere')
     @laravelPWA
 
 </head>
 <body>
+<div id="loader" class="center"></div>
 
-
-
-
-<nav>
+<nav class="nav-extended">
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Soccer App</a>
-        @auth
+        <a href="#" class="brand-logo">Soccer App</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            @auth
+            <li><a href=""><i class="material-icons"></i>{{auth()->user()->name}}</a></li>
+            <li><a href="{{route('show-profiles')}}"><i class="material-icons">person</i>Player Profiles</a></li>
+            <li><a href="{{route('show-clubs')}}"><i class="material-icons">groups</i>Clubs</a></li>
+            <li><a href="/chat"><i class="material-icons">forum</i>Community Chat</a></li>
+            <li><a href="{{route('show-reports')}}"><i class="material-icons">show_chart</i>Reports</a></li>
+            <li><a href="{{route('logout')}}"><i class="material-icons">logout</i>Logout</a></li>
             @endauth
-
+        </ul>
     </div>
+
 </nav>
-@auth
+
 <ul class="sidenav" id="mobile-demo">
+    @auth
     <li><a href=""><i class="material-icons"></i>{{auth()->user()->name}}</a></li>
     <li><a href="{{route('show-profiles')}}"><i class="material-icons">person</i>Player Profiles</a></li>
     <li><a href="{{route('show-clubs')}}"><i class="material-icons">groups</i>Clubs</a></li>
     <li><a href="/chat"><i class="material-icons">forum</i>Community Chat</a></li>
     <li><a href="{{route('show-reports')}}"><i class="material-icons">show_chart</i>Reports</a></li>
     <li><a href="{{route('logout')}}"><i class="material-icons">logout</i>Logout</a></li>
+    @endauth
 </ul>
-@endauth
+
+
+
+
+
+
 
 <div class="container">
 @include('layouts.flash-message')
@@ -80,6 +119,22 @@
     });
 
 </script>
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector(
+                "body").style.visibility = "hidden";
+            document.querySelector(
+                "#loader").style.visibility = "visible";
+        } else {
+            document.querySelector(
+                "#loader").style.display = "none";
+            document.querySelector(
+                "body").style.visibility = "visible";
+        }
+    };
+</script>
+
 @yield('scriptsHere')
 </body>
 </html>

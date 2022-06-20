@@ -135,12 +135,18 @@ class PlayerController extends Controller
 
     }
     public function claimProfile($profile_id){
+        //dd(auth()->user()->name);
         try{
             $profile=PlayerProfile::find($profile_id);
+            if($profile->name==auth()->user()->name){
             $profile->update([
                 'user_id'=>Auth::id()
             ]);
             return back()->with('success','profile has been linked with account');
+            }
+            else{
+                return back()->with('error','profile name did not match player name');
+            }
         }catch(\Exception $e){
             return back()->with('error',$e->getMessage());
         }

@@ -16,7 +16,6 @@
         <div class="input-field col s12">
             <select name="type">
                 <option value="" disabled selected>Choose your account type</option>
-                <option value="admin">Coach/Scout</option>
                 <option value="player">Player</option>
                 <option value="fan">Fan</option>
             </select>

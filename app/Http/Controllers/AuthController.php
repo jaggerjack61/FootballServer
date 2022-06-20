@@ -16,6 +16,17 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function showAdminRegister()
+    {
+        return view('auth.admin-register');
+    }
+
+    public function showAdminLogin()
+    {
+        return view('auth.admin-login');
+    }
+
+
     public function register(Request $request){
        // dd($request);
         User::create([
@@ -38,15 +49,57 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        auth()->attempt([
-            'email'=>$request->email,
-            'password'=>$request->password
-        ]);
-        return redirect()->route('show-profiles');
+        $user=User::where('email',$request->email)->first();
+        if(AccountType::where('user_id',$user->id)->value('type')=='admin'){
+            return back()->with('error','Please use admin panel when logging in with admin account.');
+        }
+        try {
+            auth()->attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+            return redirect()->route('show-profiles');
+        }
+        catch(\Exception $e){
+            return back()->with('error','Make sure your Username and Password are correct.');
+        }
     }
+
+    public function adminLogin(Request $request)
+    {
+        $user=User::where('email',$request->email)->first();
+        if(AccountType::where('user_id',$user->id)->value('type')=='admin'){
+            try {
+                auth()->attempt([
+                    'email' => $request->email,
+                    'password' => $request->password
+                ]);
+                return redirect()->route('show-profiles');
+            }
+            catch(\Exception $e){
+                return back()->with('error','Make sure your Username and Password are correct.');
+            }
+        }
+        else{
+            return back()->with('error','This page is for admin login only.');
+        }
+
+    }
+
+
+
+
     public function logout(){
         auth()->logout();
         return redirect()->route('login');
+
+    }
+
+    public function showDefault(){
+
+    }
+
+    public function showHome(){
 
     }
 }

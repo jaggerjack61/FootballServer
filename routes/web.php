@@ -18,17 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/login');
-});
-Route::get('/home', function () {
-    return redirect('/login');
-});
 
+Route::get('/',[AuthController::class,'showDefault'])->middleware('guest');
+Route::get('/home',[AuthController::class,'showHome'])->middleware('guest');
 //Auth Routes
+
 Route::get('/login',[AuthController::class,'showLogin'])->middleware('guest');
 Route::get('/register',[AuthController::class,'showRegister'])->middleware('guest');
+Route::get('/register/admin',[AuthController::class,'showAdminRegister'])->middleware('guest');
 Route::post('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
+Route::post('/login/admin',[AuthController::class,'adminLogin'])->name('admin-login')->middleware('guest');
+Route::get('/login/admin',[AuthController::class,'showAdminLogin'])->name('show-admin-login')->middleware('guest');
 Route::post('/register',[AuthController::class,'register'])->name('register')->middleware('guest');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
@@ -54,6 +54,8 @@ Route::get('/player/release/{profile_id}',[PlayerController::class,'releaseProfi
 
 //Chat routes
 Route::get('/chat',[ChatController::class,'showChats'])->name('show-chats')->middleware('auth');
+Route::get('/chat/dm/{profile_id}',[ChatController::class,'messageProfile'])->name('dm-profile')->middleware('auth');
+
 
 
 
