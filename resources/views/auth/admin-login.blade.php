@@ -18,7 +18,7 @@
                 <button type="submit" class="waves-effect waves-light btn-small">Login</button>
             </div>
             <div class="col s9 m9">
-                <a href="{{route('register')}}">Or create an account right now.</a>
+                <a href="{{route('admin-register')}}">Or create an account right now.</a>
             </div>
         </div>
 

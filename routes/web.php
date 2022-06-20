@@ -25,7 +25,7 @@ Route::get('/home',[AuthController::class,'showHome'])->middleware('guest');
 
 Route::get('/login',[AuthController::class,'showLogin'])->middleware('guest');
 Route::get('/register',[AuthController::class,'showRegister'])->middleware('guest');
-Route::get('/register/admin',[AuthController::class,'showAdminRegister'])->middleware('guest');
+Route::get('/register/admin',[AuthController::class,'showAdminRegister'])->name('admin-register')->middleware('guest');
 Route::post('/login',[AuthController::class,'login'])->name('login')->middleware('guest');
 Route::post('/login/admin',[AuthController::class,'adminLogin'])->name('admin-login')->middleware('guest');
 Route::get('/login/admin',[AuthController::class,'showAdminLogin'])->name('show-admin-login')->middleware('guest');
